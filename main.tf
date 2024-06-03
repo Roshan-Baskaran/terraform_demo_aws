@@ -417,13 +417,13 @@ provider "aws" {
     key_name      = aws_key_pair.deployer.key_name
 
      provisioner "file" {
-    source      = "C:/Users/rbaskar/demokeypair.pem"
-    destination = "/home/ec2-user/demokeypair.pem"
+    source      = "C:/Users/rbaskar/demokeypair.pub"
+    destination = "/home/ec2-user/demokeypair.pub"
 
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = file("C:/Users/rbaskar/demokeypair.pem")
+      private_key = file("C:/Users/rbaskar/demokeypair.pub")
       host        = self.public_ip
       timeout     = "2m" 
     }
@@ -431,13 +431,13 @@ provider "aws" {
 
   provisioner "remote-exec" {
     inline = [
-      "chmod 400 /home/ec2-user/demokeypair.pem"
+      "chmod 400 /home/ec2-user/demokeypair.pub"
     ]
 
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = file("C:/Users/rbaskar/demokeypair.pem")
+      private_key = file("C:/Users/rbaskar/demokeypair.pub")
       host        = self.public_ip
       timeout     = "2m" 
     }
