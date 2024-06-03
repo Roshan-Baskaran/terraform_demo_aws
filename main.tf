@@ -181,23 +181,17 @@ resource "aws_lb" "bastion_alb" {
 }
 
 resource "aws_lb_target_group" "bastion_tg" {
-  name        = "bastion-tg"
-  port        = 22
-  protocol    = "TCP"
-  vpc_id      = aws_vpc.demo_vpc.id
-  target_type = "instance"
+  name     = "bastion-tg"
+  port     = 80
+  protocol = "TCP"
 
   health_check {
-    enabled             = true
-    interval            = 30
-    path                = "/"
-    timeout             = 5
-    healthy_threshold   = 3
-    unhealthy_threshold = 3
-    port                = "traffic-port"
-    protocol            = "TCP"
+    protocol             = "TCP"
+    interval             = 30
+    timeout              = 10
+    healthy_threshold    = 2
+    unhealthy_threshold  = 2
   }
-
   tags = {
     Name = "bastion-tg"
   }
