@@ -141,7 +141,7 @@ resource "aws_security_group" "private_sg" {
 
 resource "aws_key_pair" "deployer" {
   key_name   = "demokeypair"
-  public_key = file("/home/ec2-user/.ssh/demokeypair.pub")  # Path to your public key
+  public_key = file("C:/Users/rbaskar/demokeypair.pub")  # Path to your public key
 }
 
 resource "aws_instance" "bastion_host" {
