@@ -415,33 +415,6 @@ provider "aws" {
     subnet_id     = aws_subnet.public_subnet_1.id
     vpc_security_group_ids = [aws_security_group.public_sg.id]
     key_name      = aws_key_pair.deployer.key_name
-
-     provisioner "file" {
-    source      = "C:/Users/rbaskar/demokeypair.pub"
-    destination = "/home/ec2-user/demokeypair.pub"
-
-    connection {
-      type        = "ssh"
-      user        = "ec2-user"
-      private_key = file("C:/Users/rbaskar/demokeypair.pub")
-      host        = self.public_ip
-      timeout     = "2m" 
-    }
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "chmod 400 /home/ec2-user/demokeypair.pub"
-    ]
-
-    connection {
-      type        = "ssh"
-      user        = "ec2-user"
-      private_key = file("C:/Users/rbaskar/demokeypair.pub")
-      host        = self.public_ip
-      timeout     = "2m" 
-    }
-  }
   
     tags = {
       Name = "bastion-host"
