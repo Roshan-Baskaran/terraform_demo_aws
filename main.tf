@@ -18,7 +18,7 @@ resource "aws_instance" "example" {
               systemctl enable apache2
               EOF
 
-  key_name = "your_key_pair_name"
+
 
   # Add a security group to allow inbound traffic on port 80 (HTTP)
   vpc_security_group_ids = [aws_security_group.instance.id]
